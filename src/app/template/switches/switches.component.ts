@@ -7,9 +7,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SwitchesComponent implements OnInit {
 
+  person = {
+    genero: '',
+    notification: null,
+    conditions: null
+  }
   constructor() { }
 
   ngOnInit(): void {
   }
 
+  saveForm() {
+
+  }
 }
