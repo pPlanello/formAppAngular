@@ -1,1 +1,80 @@
-<p>dynamic works!</p>
+<h2>Template: <small>Dinámicos</small></h2>
+
+<hr>
+
+<form #myForm="ngForm" autocomplete="off">
+  <!-- Personal Name  -->
+  <div class="mb-3 row">
+    <label class="col-sm-3 col-form-label">Nombre</label>
+    <div class="col-sm-9">
+      <input class="form-control"
+        type="text"
+        [ngModel]="person.name"
+        required
+        name="personalName"
+        min="3"
+        placeholder="Nombre de la persona">
+      <span
+          *ngIf="myForm.controls.personalName?.errors && myForm.controls.personalName?.touched"
+          class="form-text text-danger">
+        Este campo es obligatorio
+      </span>
+    </div>
+  </div>
+
+  <!-- Add Favorite  -->
+  <div class="mb-3 row">
+    <label class="col-sm-3 col-form-label">Agregar</label>
+    <div class="col-sm-9">
+      <div class="input-group">
+        <input class="form-control"
+          placeholder="Agregar favorito"
+          [(ngModel)]="newGame"
+          name="newGame">
+        <button type="button"
+            class="btn btn-outline-primary float-end"
+            (click)="addGame()">
+          Agregar
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Favorite Games List  -->
+  <div class="mb-3 row">
+    <label class="col-sm-3 col-form-label">Favoritos</label>
+    <div class="col-sm-9">
+      <div class="input-group mb-1"
+          *ngFor="let game of person.favorites; let i = index">
+        <input
+          class="form-control"
+          name="game_{{game.id}}"
+          [(ngModel)]="game.name">
+        <button
+            type="button"
+            class="btn btn-outline-danger"
+            (click)="deleteGame(i)">
+          Eliminar
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-12">
+      <button type="button"
+          class="btn btn-primary float-end"
+          [disabled]="!myForm.valid"
+          (click)="save()">
+        Guardar
+      </button>
+    </div>
+  </div>
+</form>
+
+<div class="row">
+  <div class="col">
+    <span>Value</span>
+    <pre> {{ person | json }} </pre>
+  </div>
+</div>
