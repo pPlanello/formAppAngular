@@ -1,1 +1,78 @@
-<p>dynamic works!</p>
+<h2>Template: <small>Dinámicos</small></h2>
+
+<hr>
+
+<form autocomplete="off" [formGroup]="myForm">
+  <!-- Personal Name  -->
+  <div class="mb-3 row">
+    <label class="col-sm-3 col-form-label">Nombre</label>
+    <div class="col-sm-9">
+      <input class="form-control"
+        type="text"
+        placeholder="Nombre de la persona"
+        formControlName="name">
+      <span
+          *ngIf="notValidField('name')"
+          class="form-text text-danger">
+        Este campo es obligatorio
+      </span>
+    </div>
+  </div>
+
+  <!-- Add Favorite  -->
+  <div class="mb-3 row">
+    <label class="col-sm-3 col-form-label">Agregar</label>
+    <div class="col-sm-9">
+      <div class="input-group">
+        <input class="form-control"
+            [formControl]="newFavorite"
+            placeholder="Agregar favorito"
+            (keyup.enter)="addNewFavorite()">
+
+        <button type="button"
+            class="btn btn-outline-primary float-end"
+            (click)="addNewFavorite()">
+          Agregar
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Favorite Games List  -->
+  <div class="mb-3 row">
+    <label class="col-sm-3 col-form-label">Favoritos</label>
+    <div class="col-sm-9" formArrayName="favorites">
+      <div
+          *ngFor="let favorite of favoritesArray.controls; let i = index"
+          class="input-group mb-1">
+        <input
+          [formControlName]="i"
+          class="form-control">
+
+        <button
+            type="button"
+            class="btn btn-outline-danger"
+            (click)="deleteFavorite(i)">
+          Eliminar
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-12">
+      <button type="button"
+          class="btn btn-primary float-end"
+          (click)="saveForm()">
+        Guardar
+      </button>
+    </div>
+  </div>
+</form>
+
+<div class="row">
+  <div class="col">
+    <span>Value</span>
+    <pre> {{ myForm.value | json }} </pre>
+  </div>
+</div>

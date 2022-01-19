@@ -1,1 +1,83 @@
-<p>basic works!</p>
+<h2> Reactive: <small>Básicos</small></h2>
+
+<hr>
+
+<div class="row">
+  <div class="col">
+    <form autocomplete="off" [formGroup]="myForm">
+      <!-- Campo producto -->
+      <div class="mb-3 row">
+        <label class="col-sm-3 col-form-label">Producto</label>
+        <div class="col-sm-9">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Nombre del producto"
+            formControlName="name">
+          <span
+              *ngIf="notValidField('name')"
+              class="form-text text-danger">
+            Debe de ser de 3 letras
+          </span>
+        </div>
+      </div>
+
+      <!-- Precio -->
+      <div class="mb-3 row">
+        <label class="col-sm-3 col-form-label">Precio</label>
+        <div class="col-sm-9">
+          <input
+            type="number"
+            class="form-control"
+            placeholder="Precio del producto"
+            formControlName="price">
+            <span
+                *ngIf="notValidField('price')"
+                class="form-text text-danger">
+              Debe de ser mayor que 0
+            </span>
+        </div>
+      </div>
+
+      <!-- Existencias -->
+      <div class="mb-3 row">
+        <label class="col-sm-3 col-form-label">Existencias</label>
+        <div class="col-sm-9">
+          <input
+            type="number"
+            class="form-control"
+            placeholder="Existencias del producto"
+            formControlName="count">
+            <span
+                *ngIf="notValidField('price')"
+                class="form-text text-danger">
+              Debe de ser mayor que 0
+            </span>
+        </div>
+      </div>
+
+      <!-- Submit Button -->
+      <div class="row">
+        <div class="col">
+          <button
+              type="submit"
+              class="btn btn-primary float-end"
+              [disabled]="!myForm.valid"
+              (click)="saveForm()">
+            Guardar
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+
+<div class="row">
+  <div class="col">
+    <span>Valid</span>
+    <pre> {{ myForm.valid }} </pre>
+    <span>Value</span>
+    <pre> {{ myForm.value | json }} </pre>
+  </div>
+</div>
