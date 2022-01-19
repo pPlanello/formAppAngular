@@ -2,7 +2,7 @@
 
 <hr>
 
-<form>
+<form [formGroup]="myForm">
   <!-- Radios -->
   <div class="row mb-3">
     <label class="col-sm-3 col-form-label">Género</label>
@@ -11,7 +11,9 @@
         <input
             class="form-check-input"
             type="radio"
-            id="radioDefault1">
+            id="radioDefault1"
+            value="M"
+            formControlName="genero">
         <label class="form-check-label" for="radioDefault1">
           Masculino
         </label>
@@ -21,7 +23,9 @@
         <input
           class="form-check-input"
           type="radio"
-          id="radioDefault2">
+          id="radioDefault2"
+          value="F"
+          formControlName="genero">
         <label class="form-check-label" for="radioDefault2">
           Femenino
         </label>
@@ -40,9 +44,10 @@
           class="form-check-input"
           type="checkbox"
           role="switch"
-          id="switchCheck">
+          id="switchCheck"
+          formControlName="notifications">
         <label class="form-check-label" for="switchCheck">
-          <!-- {{myForm.controls.switchNotify.value ? 'Si' : 'No'}} -->
+          {{myForm.controls.notifications.value ? 'Si' : 'No'}}
         </label>
       </div>
     </div>
@@ -55,7 +60,8 @@
       <div class="form-check">
         <input
             class="form-check-input"
-            type="checkbox">
+            type="checkbox"
+            formControlName="conditions">
         <label class="form-check-label" for="flexCheckDefault">
           Términos y condiciones
         </label>
@@ -66,18 +72,22 @@
   <div class="row">
     <div class="col-sm-12">
       <button type="button"
-          class="btn btn-primary float-end">
+          class="btn btn-primary float-end"
+          [disabled]="!myForm.valid"
+          (click)="saveForm()">
         Guardar
       </button>
     </div>
   </div>
 </form>
 
-<!-- <div class="row">
+<div class="row">
   <div class="col">
     <span>Valid</span>
     <pre> {{ myForm.valid }} </pre>
+    <span>Value Formulario</span>
+    <pre> {{ myForm.value | json }} </pre>
     <span>Value</span>
     <pre> {{ person | json }} </pre>
   </div>
-</div> -->
+</div>

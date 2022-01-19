@@ -11,8 +11,8 @@ export class DynamicComponent implements OnInit {
   myForm: FormGroup = this.formBuilder.group({
     name: ['', [Validators.required, Validators.minLength(3)]],
     favorites: this.formBuilder.array([
-      ['Metal Gear'],
-      ['Overwatch']
+      ['Metal Gear', [Validators.required]],
+      ['Overwatch', [Validators.required]]
     ], Validators.required)
   });
 
