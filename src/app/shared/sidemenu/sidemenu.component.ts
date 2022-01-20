@@ -13,6 +13,7 @@ export class SidemenuComponent {
 
   templateMenu: MenuItem[] = [];
   reactiveMenu: MenuItem[] = [];
+  authMenu: MenuItem[] = [];
 
   constructor() {
     this.templateMenu = [
@@ -25,7 +26,12 @@ export class SidemenuComponent {
       { text: 'Básico', route: '/reactive/basic' },
       { text: 'Dinámico', route: '/reactive/dynamic' },
       { text: 'Switches', route: '/reactive/switches' },
-    ]
+    ];
+
+    this.authMenu = [
+      { text: 'Registo', route: '/auth/register' },
+      { text: 'Login', route: '/auth/login' },
+    ];
   }
 
 
