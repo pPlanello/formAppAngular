@@ -1,1 +1,72 @@
-<p>selector works!</p>
+<h2> Reactive: <small>Selectores</small></h2>
+
+<hr>
+
+
+<form [formGroup]="myForm">
+  <!-- Continente -->
+  <div class="row">
+    <div class="col">
+      <label class="form-label">Continente:</label>
+      <select class="form-control"
+          formControlName="region">
+        <option value=""> -- Seleccione Continente -- </option>
+        <option *ngFor="let region of regions"
+            [value]="region | lowercase">
+          {{ region | titlecase }}
+        </option>
+      </select>
+    </div>
+  </div>
+
+  <!-- Country -->
+  <div class="row">
+    <div class="col">
+      <label class="form-label">País:</label>
+      <select class="form-control"
+          formControlName="country">
+        <option value=""> -- Seleccione País -- </option>
+        <option *ngFor="let country of countries"
+            [value]="country?.cca3 | lowercase">
+          {{ country.name?.common | titlecase }}
+        </option>
+      </select>
+    </div>
+  </div>
+
+  <!-- BorderCountry -->
+  <div class="row">
+    <div class="col">
+      <label class="form-label">Fronteras:</label>
+      <select class="form-control"
+          formControlName="borderCountry">
+        <option value=""> -- Seleccione Fontera -- </option>
+        <option *ngFor="let border of borderCountries"
+            [value]="border | lowercase">
+          {{ border | titlecase }}
+        </option>
+      </select>
+    </div>
+  </div>
+
+  <br>
+
+  <!-- Submit Button -->
+  <div class="row">
+    <div class="col">
+      <button
+          type="button"
+          class="btn btn-primary float-end"
+          [disabled]="!myForm.valid"
+          (click)="saveForm()">
+        Guardar
+      </button>
+    </div>
+  </div>
+</form>
+
+<br>
+
+<h3>Formulario</h3>
+<pre>Valid {{ myForm.valid }} </pre>
+<pre>{{ myForm.value | json }}</pre>

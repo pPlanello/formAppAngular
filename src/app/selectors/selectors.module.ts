@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { SelectorsRoutingModule } from './selectors-routing.module';
 import { SelectorComponent } from './selector/selector.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -11,7 +12,8 @@ import { SelectorComponent } from './selector/selector.component';
   ],
   imports: [
     CommonModule,
-    SelectorsRoutingModule
+    SelectorsRoutingModule,
+    ReactiveFormsModule
   ]
 })
 export class SelectorsModule { }
