@@ -14,6 +14,7 @@ export class SidemenuComponent {
   templateMenu: MenuItem[] = [];
   reactiveMenu: MenuItem[] = [];
   authMenu: MenuItem[] = [];
+  selectorMenu: MenuItem[] = [];
 
   constructor() {
     this.templateMenu = [
@@ -31,6 +32,10 @@ export class SidemenuComponent {
     this.authMenu = [
       { text: 'Registo', route: '/auth/register' },
       { text: 'Login', route: '/auth/login' },
+    ];
+
+    this.selectorMenu = [
+      { text: 'Registo', route: '/selector/country' }
     ];
   }
 

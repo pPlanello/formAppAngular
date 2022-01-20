@@ -40,3 +40,19 @@
     {{ item.text }}
   </li>
 </ul>
+
+<br>
+
+<h2>Selectores</h2>
+
+<hr>
+
+<ul class="list-group">
+  <li
+      class="list-group-item"
+      *ngFor="let item of selectorMenu"
+      [routerLink]="[item.route]"
+      routerLinkActive="active">
+    {{ item.text }}
+  </li>
+</ul>
